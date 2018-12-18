@@ -1,5 +1,5 @@
 /**
- * vsGoogleAutocomplete - v0.5.0 - 2018-07-19
+ * vsGoogleAutocomplete - v0.5.4 - 2018-12-18
  * https://github.com/vskosp/vsGoogleAutocomplete
  * Copyright (c) 2018 K.Polishchuk
  * License: MIT
@@ -152,7 +152,7 @@ angular.module('vsGoogleAutocomplete').directive('vsGoogleAutocomplete', ['vsGoo
 			vsDistrict: '=?',
 			onPlaceChange: '&?'
 		},
-		controller: ['$scope', '$attrs', function($scope, $attrs) {
+		controller: ['$scope', '$attrs', '$timeout', function($scope, $attrs, $timeout) {
 			this.isolatedScope = $scope;
 
 			/**
@@ -176,7 +176,10 @@ angular.module('vsGoogleAutocomplete').directive('vsGoogleAutocomplete', ['vsGoo
 			this.onPlaceChange = function(place) {
 				// TODO: add more components like streetNumber, City
 				if ($scope.onPlaceChange && (typeof $scope.onPlaceChange == 'function')) {
-					$scope.onPlaceChange({place: place});
+					$timeout( function() {
+						$scope.onPlaceChange({place: place});
+					}, 10);
+					
 				}
 			};
 		}],

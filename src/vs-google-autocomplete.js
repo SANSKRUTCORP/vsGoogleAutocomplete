@@ -170,7 +170,7 @@ angular.module('vsGoogleAutocomplete').directive('vsGoogleAutocomplete', ['vsGoo
 				if ($scope.onPlaceChange && (typeof $scope.onPlaceChange == 'function')) {
 					$timeout( function() {
 						$scope.onPlaceChange({place: place});
-					}, 10)
+					}, 10);
 					
 				}
 			};
